@@ -25,6 +25,10 @@ function shouldShowIntro() {
 function getInitialMode() {
   if (typeof window === "undefined") return "landing";
 
+  const requestedMode = new URLSearchParams(window.location.search).get("view");
+  if (requestedMode === "card") return "card";
+  if (requestedMode === "landing") return "landing";
+
   return window.matchMedia("(max-width: 767px)").matches ? "card" : "landing";
 }
 
@@ -202,7 +206,9 @@ function NutritionistCard({ onShowLanding }) {
   const [imageError, setImageError] = useState(false);
   const [showQrCode, setShowQrCode] = useState(false);
   const [linkCopied, setLinkCopied] = useState(false);
-  const cardUrl = typeof window !== "undefined" ? window.location.href : "";
+  const cardUrl = typeof window !== "undefined"
+    ? `${window.location.origin}${window.location.pathname}?view=card`
+    : "";
   const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=8&data=${encodeURIComponent(cardUrl)}`;
 
   async function copyCardLink() {
