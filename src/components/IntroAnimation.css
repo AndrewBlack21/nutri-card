@@ -12,7 +12,7 @@
 
   font-family: "Inter", system-ui, sans-serif;
 
-  animation: intro-screen-exit 550ms ease-in-out 1450ms forwards;
+  animation: intro-screen-exit 550ms ease-in-out 4450ms forwards;
 }
 
 .intro-content {
