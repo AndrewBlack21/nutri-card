@@ -1,0 +1,225 @@
+.intro-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+
+  color: #3d3833;
+  background: #efece6;
+
+  font-family: "Inter", system-ui, sans-serif;
+
+  animation: intro-screen-exit 550ms ease-in-out 1450ms forwards;
+}
+
+.intro-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(90%, 460px);
+  padding: 30px 20px;
+  text-align: center;
+
+  animation: intro-content-enter 750ms ease-out both;
+}
+
+.intro-symbol {
+  position: relative;
+  width: 115px;
+  height: 120px;
+  margin-bottom: 24px;
+  color: #d97757;
+}
+
+.intro-leaf {
+  position: absolute;
+  top: 0;
+  width: 78px;
+  height: 100px;
+  overflow: visible;
+}
+
+.intro-leaf--left {
+  left: 5px;
+  transform-origin: 75% 85%;
+  animation: intro-leaf-left 950ms ease-out both;
+}
+
+.intro-leaf--right {
+  right: 3px;
+  transform-origin: 25% 85%;
+  animation: intro-leaf-right 950ms ease-out both;
+}
+
+.intro-symbol__dot {
+  position: absolute;
+  left: 50%;
+  bottom: 5px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #d97757;
+  transform: translateX(-50%) scale(0);
+  animation: intro-dot 350ms ease-out 500ms forwards;
+}
+
+.intro-eyebrow {
+  margin: 0 0 14px;
+  color: #b95e42;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.19em;
+  line-height: 1.7;
+
+  opacity: 0;
+  animation: intro-text-enter 550ms ease-out 400ms forwards;
+}
+
+.intro-name {
+  margin: 0;
+  color: #3d3833;
+  font-size: clamp(1.8rem, 6vw, 2.6rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.055em;
+
+  opacity: 0;
+  animation: intro-text-enter 650ms ease-out 550ms forwards;
+}
+
+.intro-divider {
+  width: 0;
+  height: 1px;
+  margin: 19px 0;
+  background: #d97757;
+  animation: intro-divider-enter 500ms ease-out 850ms forwards;
+}
+
+.intro-slogan {
+  margin: 0;
+  color: #77716a;
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.015em;
+
+  opacity: 0;
+  animation: intro-text-enter 500ms ease-out 900ms forwards;
+}
+
+.intro-corner {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  border-color: rgb(217 119 87 / 28%);
+  border-style: solid;
+  opacity: 0;
+  animation: intro-corner-enter 600ms ease-out 250ms forwards;
+}
+
+.intro-corner--top {
+  top: 24px;
+  left: 24px;
+  border-width: 1px 0 0 1px;
+}
+
+.intro-corner--bottom {
+  right: 24px;
+  bottom: 24px;
+  border-width: 0 1px 1px 0;
+}
+
+@keyframes intro-screen-exit {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+@keyframes intro-content-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes intro-leaf-left {
+  from {
+    opacity: 0;
+    transform: rotate(-24deg) translate(-10px, 8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: rotate(0) translate(0, 0);
+  }
+}
+
+@keyframes intro-leaf-right {
+  from {
+    opacity: 0;
+    transform: rotate(24deg) translate(10px, 8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: rotate(0) translate(0, 0);
+  }
+}
+
+@keyframes intro-dot {
+  to {
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+@keyframes intro-text-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes intro-divider-enter {
+  to {
+    width: 56px;
+  }
+}
+
+@keyframes intro-corner-enter {
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-screen,
+  .intro-content,
+  .intro-leaf,
+  .intro-symbol__dot,
+  .intro-eyebrow,
+  .intro-name,
+  .intro-divider,
+  .intro-slogan,
+  .intro-corner {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+  }
+
+  .intro-screen {
+    animation-delay: 0ms !important;
+  }
+}

@@ -1,7 +1,27 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import IntroAnimation from "./components/IntroAnimation";
 import { nutritionist } from "./data";
 import "./App.css";
 
+const INTRO_SESSION_KEY = "nutritionist-intro-seen";
+
+function shouldShowIntro() {
+  try {
+    if (sessionStorage.getItem(INTRO_SESSION_KEY) === "true") {
+      return false;
+    }
+
+    // Marca a abertura imediatamente para evitar repetir
+    // a animação se a página for recarregada durante a intro.
+    sessionStorage.setItem(INTRO_SESSION_KEY, "true");
+
+    return true;
+  } catch {
+    // Se o armazenamento estiver indisponível,
+    // mostra a intro normalmente nesta montagem.
+    return true;
+  }
+}
 function getInitialMode() {
   if (typeof window === "undefined") return "landing";
 
@@ -539,18 +559,29 @@ function LandingPage({ onShowCard }) {
 
 export default function App() {
   const [viewMode, setViewMode] = useState(getInitialMode);
+  const [showIntro, setShowIntro] = useState(shouldShowIntro);
+
+  const handleIntroComplete = useCallback(() => {
+    setShowIntro(false);
+  }, []);
 
   useEffect(() => {
     document.title =
       viewMode === "card"
         ? `${nutritionist.name} | Cartão Virtual`
         : `${nutritionist.name} | Nutrição`;
-
-    window.scrollTo({ top: 0, behavior: "instant" });
   }, [viewMode]);
 
   return (
     <div className={`app app--${viewMode}`}>
+      {showIntro && (
+        <IntroAnimation
+          name={nutritionist.name}
+          slogan={nutritionist.slogan}
+          onComplete={handleIntroComplete}
+        />
+      )}
+
       <header className="app-header">
         <Brand />
         <ViewSwitcher viewMode={viewMode} onChange={setViewMode} />
