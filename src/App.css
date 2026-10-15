@@ -1215,3 +1215,361 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+
+/* CARTÃO PROFISSIONAL COMPARTILHÁVEL */
+.virtual-card--business {
+  width: min(100%, 520px);
+  overflow: hidden;
+  padding: 0;
+  border: 1px solid rgb(255 255 255 / 90%);
+  border-radius: 30px;
+  background: #fffdf9;
+  box-shadow: 0 28px 80px rgb(61 56 51 / 13%);
+}
+
+.business-card__cover {
+  position: relative;
+  min-height: 155px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 25px 28px;
+  color: #fffaf4;
+  background: #354936;
+}
+
+.business-card__cover .brand {
+  position: relative;
+  z-index: 1;
+  color: #fffaf4;
+}
+
+.business-card__cover .brand__symbol {
+  width: 42px;
+  height: 42px;
+  color: #e5c7a7;
+}
+
+.business-card__cover-label {
+  position: absolute;
+  z-index: 1;
+  left: 29px;
+  bottom: 23px;
+  font-size: 0.61rem;
+  font-weight: 650;
+  letter-spacing: 0.16em;
+}
+
+.business-card__cover-leaf {
+  position: absolute;
+  display: block;
+  width: 190px;
+  height: 90px;
+  border: 1px solid rgb(239 236 230 / 28%);
+  border-radius: 100% 0 100% 0;
+  transform: rotate(-28deg);
+}
+
+.business-card__cover-leaf--one {
+  top: -43px;
+  right: -22px;
+}
+
+.business-card__cover-leaf--two {
+  top: 15px;
+  right: 22px;
+  transform: rotate(35deg) scale(.75);
+}
+
+.business-card__body {
+  padding: 0 30px 26px;
+}
+
+.business-card__profile {
+  position: relative;
+  margin-top: -56px;
+  text-align: center;
+}
+
+.business-card__profile .virtual-card__portrait {
+  width: 124px;
+  margin-bottom: 18px;
+}
+
+.business-card__photo {
+  display: block;
+  width: 124px;
+  height: 124px;
+  object-fit: cover;
+  object-position: center 28%;
+  border: 5px solid #fffdf9;
+  border-radius: 50%;
+  background: #e5ded4;
+  box-shadow: 0 7px 25px rgb(61 56 51 / 15%);
+}
+
+.business-card__profile .image-placeholder {
+  width: 124px;
+  height: 124px;
+  border: 5px solid #fffdf9;
+}
+
+.business-card__profile .eyebrow {
+  font-size: .59rem;
+}
+
+.business-card__profile h1 {
+  margin: 9px 0 6px;
+  font-size: clamp(1.75rem, 6vw, 2.2rem);
+  line-height: 1.15;
+  letter-spacing: -.055em;
+}
+
+.business-card__slogan {
+  margin: 21px 0 7px;
+  color: #354936;
+  font-family: Georgia, serif;
+  font-size: 1.28rem;
+  font-style: italic;
+}
+
+.business-card__profile .virtual-card__about {
+  max-width: 350px;
+  font-size: .84rem;
+}
+
+.business-card__contact {
+  display: grid;
+  gap: 9px;
+  margin-top: 26px;
+}
+
+.business-card__contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 13px 14px;
+  border: 1px solid #e8e2d8;
+  border-radius: 15px;
+  color: var(--color-text);
+  background: #fff;
+  text-decoration: none;
+  transition: border-color 180ms ease, transform 180ms ease, background 180ms ease;
+}
+
+.business-card__contact-item:hover {
+  transform: translateY(-1px);
+  border-color: #b4c0ad;
+  background: #fafbf7;
+}
+
+.business-card__contact-icon {
+  display: grid;
+  place-items: center;
+  width: 39px;
+  height: 39px;
+  flex: 0 0 auto;
+  border-radius: 12px;
+  color: #354936;
+  background: #edf0e8;
+  font-size: 1.25rem;
+}
+
+.business-card__contact-item > span:nth-child(2) {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  flex: 1;
+  text-align: left;
+}
+
+.business-card__contact-item small {
+  color: var(--color-muted);
+  font-size: .69rem;
+}
+
+.business-card__contact-item strong {
+  overflow-wrap: anywhere;
+  font-size: .81rem;
+  font-weight: 650;
+}
+
+.business-card__contact-arrow {
+  color: var(--color-primary-dark);
+  font-size: .9rem;
+}
+
+.business-card__share {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 132px;
+  align-items: center;
+  gap: 17px;
+  margin-top: 23px;
+  padding: 19px;
+  border: 1px solid #e3e4d8;
+  border-radius: 18px;
+  background: #f5f5ed;
+}
+
+.business-card__share-copy .eyebrow {
+  font-size: .54rem;
+  letter-spacing: .1em;
+}
+
+.business-card__share-copy h2 {
+  margin: 8px 0;
+  color: #354936;
+  font-size: 1.08rem;
+  line-height: 1.25;
+  letter-spacing: -.035em;
+}
+
+.business-card__share-copy p {
+  margin: 0 0 14px;
+  color: var(--color-muted);
+  font-size: .74rem;
+  line-height: 1.6;
+}
+
+.business-card__share-copy .button {
+  min-height: 43px;
+  padding-inline: 10px;
+  font-size: .75rem;
+}
+
+.business-card__share-copy .button svg {
+  width: 16px;
+  height: 16px;
+}
+
+.business-card__share-copy .button--outline {
+  margin-top: 8px;
+}
+
+.business-card__qr-wrap {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  padding: 9px;
+  border: 1px solid #e5e0d6;
+  border-radius: 13px;
+  background: #fff;
+}
+
+.business-card__qr {
+  display: block;
+  width: 100%;
+  max-width: 112px;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+
+.business-card__qr-wrap > span {
+  color: #626b5b;
+  font-size: .48rem;
+  font-weight: 750;
+  letter-spacing: .08em;
+  text-align: center;
+}
+
+.business-card__more {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 22px;
+  padding: 9px 0 19px;
+}
+
+.business-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 17px;
+  border-top: 1px solid #e8e2d8;
+  color: var(--color-muted);
+  font-size: .59rem;
+}
+
+.business-card__footer .brand__symbol {
+  width: 27px;
+  height: 27px;
+}
+
+@media (max-width: 480px) {
+  .virtual-card--business {
+    border-radius: 25px;
+  }
+
+  .business-card__cover {
+    min-height: 142px;
+    padding: 22px 21px;
+  }
+
+  .business-card__cover-label {
+    left: 22px;
+    bottom: 20px;
+    font-size: .53rem;
+  }
+
+  .business-card__body {
+    padding: 0 18px 21px;
+  }
+
+  .business-card__share {
+    grid-template-columns: minmax(0, 1fr) 104px;
+    gap: 10px;
+    padding: 13px;
+  }
+
+  .business-card__qr-wrap {
+    padding: 6px;
+  }
+
+  .business-card__qr-wrap > span {
+    font-size: .42rem;
+  }
+
+  .business-card__share-copy .eyebrow {
+    font-size: .48rem;
+  }
+
+  .business-card__share-copy h2 {
+    font-size: 1rem;
+  }
+
+  .business-card__share-copy p {
+    font-size: .7rem;
+  }
+
+  .business-card__share-copy .button {
+    gap: 6px;
+    font-size: .7rem;
+  }
+
+  .business-card__footer {
+    flex-wrap: wrap;
+    font-size: .55rem;
+  }
+}
+
+@media print {
+  .app-header,
+  .business-card__share-copy .button,
+  .business-card__more {
+    display: none !important;
+  }
+
+  .virtual-card-page {
+    padding: 0;
+    background: #fff;
+  }
+
+  .virtual-card--business {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+}
