@@ -1217,3 +1217,130 @@
 }
 
 
+
+
+/* Compartilhamento opcional do cartão virtual */
+.qr-modal-backdrop {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow-y: auto;
+  padding: 20px;
+  background: rgb(45 43 37 / 55%);
+  backdrop-filter: blur(5px);
+  animation: qr-backdrop-in 180ms ease both;
+}
+
+.qr-modal {
+  position: relative;
+  width: min(100%, 390px);
+  padding: 34px 28px 26px;
+  border: 1px solid rgb(255 255 255 / 85%);
+  border-radius: 26px;
+  background:
+    radial-gradient(ellipse at top right, rgb(217 119 87 / 10%), transparent 45%),
+    #fffdf9;
+  box-shadow: 0 24px 80px rgb(30 28 24 / 25%);
+  text-align: center;
+  animation: qr-modal-in 220ms ease both;
+}
+
+.qr-modal__close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  color: var(--color-muted);
+  background: #f3eee7;
+  font: inherit;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+.qr-modal__leaf {
+  display: grid;
+  place-items: center;
+  width: 43px;
+  height: 43px;
+  margin: 0 auto 13px;
+  border-radius: 50%;
+  color: #536b4c;
+  background: #eaf0e5;
+  font-size: 1.35rem;
+}
+
+.qr-modal h2 {
+  margin: 9px 0 10px;
+  font-size: clamp(1.5rem, 6vw, 1.85rem);
+  line-height: 1.15;
+  letter-spacing: -0.045em;
+}
+
+.qr-modal > p {
+  margin: 0 auto 20px;
+  max-width: 290px;
+  color: var(--color-muted);
+  font-size: 0.84rem;
+  line-height: 1.7;
+}
+
+.qr-modal__image {
+  display: grid;
+  place-items: center;
+  width: 220px;
+  height: 220px;
+  max-width: 100%;
+  margin: 0 auto 22px;
+  padding: 10px;
+  border: 1px solid #e8e1d7;
+  border-radius: 18px;
+  background: white;
+}
+
+.qr-modal__image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.qr-modal__cancel {
+  justify-content: center;
+  width: 100%;
+  margin-top: 18px;
+}
+
+@keyframes qr-backdrop-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes qr-modal-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 420px) {
+  .qr-modal {
+    padding: 32px 20px 22px;
+  }
+
+  .qr-modal__image {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .qr-modal-backdrop,
+  .qr-modal {
+    animation: none;
+  }
+}
