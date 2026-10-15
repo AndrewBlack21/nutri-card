@@ -8,7 +8,7 @@ export default function IntroAnimation({ onComplete, name, slogan }) {
     ).matches;
 
     // Respeita usuários que preferem movimento reduzido.
-    const duration = reducedMotion ? 100 : 2000;
+    const duration = reducedMotion ? 100 : 5000;
 
     const timeoutId = window.setTimeout(() => {
       onComplete();
