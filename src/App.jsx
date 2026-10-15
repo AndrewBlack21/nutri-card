@@ -347,7 +347,7 @@ function About() {
       {/* Imagem lateral */}
       <div className="about__visual">
         <img
-          src="/images/healthy food minimal beige.jpeg"
+          src={`${import.meta.env.BASE_URL}images/healthy food minimal beige.jpeg`}
           alt="Nutrição individualizada em um ambiente acolhedor"
           loading="lazy"
         />
