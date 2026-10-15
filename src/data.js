@@ -7,7 +7,7 @@ export const nutritionist = {
     "Nutrição individualizada, escolhas equilibradas e estratégias que cabem na sua rotina.",
   location: "São Paulo, SP",
 
-  photo: "/images/Perfil.jpeg",
+  photo: `${import.meta.env.BASE_URL}images/Perfil.jpeg`,
 
   whatsapp: "5511999999999",
   instagram: "https://www.instagram.com/",
@@ -28,7 +28,7 @@ export const nutritionist = {
       title: "Consulta nutricional",
       description:
         "Uma avaliação individual para entender sua rotina, suas necessidades e seus objetivos.",
-      image: "/images/consult.jpeg",
+      image: `${import.meta.env.BASE_URL}images/consult.jpeg`,
       icon: "consultation",
     },
     {
@@ -36,7 +36,7 @@ export const nutritionist = {
       title: "Plano alimentar",
       description:
         "Orientações personalizadas para construir uma alimentação equilibrada e possível no dia a dia.",
-      image: "/images/Plano alimentar_ saúde e equilíbrio.png",
+      image: `${import.meta.env.BASE_URL}images/Plano alimentar_ saúde e equilíbrio.png`,
       icon: "food",
     },
     {
@@ -44,7 +44,7 @@ export const nutritionist = {
       title: "Acompanhamento",
       description:
         "Revisão das estratégias e dos objetivos conforme sua evolução e suas necessidades.",
-      image: "/images/acompanhamento.jpeg",
+      image: `${import.meta.env.BASE_URL}images/acompanhamento.jpeg`,
       icon: "followup",
     },
   ],
