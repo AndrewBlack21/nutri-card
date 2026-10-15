@@ -200,6 +200,20 @@ function ViewSwitcher({ viewMode, onChange }) {
 
 function NutritionistCard({ onShowLanding }) {
   const [imageError, setImageError] = useState(false);
+  const [showQrCode, setShowQrCode] = useState(false);
+  const [linkCopied, setLinkCopied] = useState(false);
+  const cardUrl = typeof window !== "undefined" ? window.location.href : "";
+  const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=8&data=${encodeURIComponent(cardUrl)}`;
+
+  async function copyCardLink() {
+    try {
+      await navigator.clipboard.writeText(cardUrl);
+      setLinkCopied(true);
+      window.setTimeout(() => setLinkCopied(false), 2200);
+    } catch {
+      window.prompt("Copie o link do cartão:", cardUrl);
+    }
+  }
 
   return (
     <main className="virtual-card-page">
@@ -240,7 +254,60 @@ function NutritionistCard({ onShowLanding }) {
           <WhatsAppButton className="button--full" />
           <InstagramLink className="button--full" />
           <ShareButton />
+          <button
+            className="button button--outline button--full"
+            type="button"
+            onClick={() => setShowQrCode(true)}
+            aria-haspopup="dialog"
+            aria-expanded={showQrCode}
+          >
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="1.7" />
+              <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="1.7" />
+              <rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="1.7" />
+              <path d="M14 14h3v3h-3zM20 14v2m-3 3h3v2m-6-2v2" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            Mostrar QR Code
+          </button>
         </div>
+
+        {showQrCode && (
+          <div
+            className="qr-modal-backdrop"
+            onClick={(event) => {
+              if (event.target === event.currentTarget) setShowQrCode(false);
+            }}
+          >
+            <section
+              className="qr-modal"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="qr-modal-title"
+            >
+              <button
+                className="qr-modal__close"
+                type="button"
+                aria-label="Fechar QR Code"
+                onClick={() => setShowQrCode(false)}
+              >
+                ×
+              </button>
+              <span className="qr-modal__leaf" aria-hidden="true">✳</span>
+              <span className="eyebrow">COMPARTILHE COM FACILIDADE</span>
+              <h2 id="qr-modal-title">Aproxime e conecte-se</h2>
+              <p>Peça para a pessoa escanear o código com a câmera do celular para abrir este cartão virtual.</p>
+              <div className="qr-modal__image">
+                <img src={qrCodeUrl} alt="QR Code para acessar o cartão virtual" />
+              </div>
+              <button className="button button--primary button--full" type="button" onClick={copyCardLink}>
+                {linkCopied ? "Link copiado!" : "Copiar link do cartão"}
+              </button>
+              <button className="text-link qr-modal__cancel" type="button" onClick={() => setShowQrCode(false)}>
+                Voltar ao cartão
+              </button>
+            </section>
+          </div>
+        )}
 
         <button
           className="text-link virtual-card__more"
