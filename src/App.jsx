@@ -200,106 +200,62 @@ function ViewSwitcher({ viewMode, onChange }) {
 
 function NutritionistCard({ onShowLanding }) {
   const [imageError, setImageError] = useState(false);
-  const [copied, setCopied] = useState(false);
-  const cardUrl = window.location.href.split("#")[0];
-  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=8&color=3d3833&bgcolor=ffffff&data=${encodeURIComponent(cardUrl)}`;
-
-  async function copyCardLink() {
-    try {
-      await navigator.clipboard.writeText(cardUrl);
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 2200);
-    } catch {
-      window.prompt("Copie o link do cartão virtual:", cardUrl);
-    }
-  }
 
   return (
     <main className="virtual-card-page">
-      <article className="virtual-card virtual-card--business">
-        <div className="business-card__cover" aria-hidden="true">
-          <span className="business-card__cover-leaf business-card__cover-leaf--one" />
-          <span className="business-card__cover-leaf business-card__cover-leaf--two" />
-          <span className="business-card__cover-label">NUTRIÇÃO • BEM-ESTAR • EQUILÍBRIO</span>
-          <Brand compact />
+      <div className="virtual-card">
+        <div className="virtual-card__top">
+          <Brand />
+          <span className="eyebrow">CARTÃO PROFISSIONAL</span>
         </div>
 
-        <div className="business-card__body">
-          <div className="business-card__profile">
-            <div className="virtual-card__portrait">
-              {!imageError ? (
-                <img
-                  className="business-card__photo"
-                  src={nutritionist.photo}
-                  alt={`Retrato de ${nutritionist.name}`}
-                  fetchPriority="high"
-                  onError={() => setImageError(true)}
-                />
-              ) : (
-                <div className="image-placeholder" aria-label="Foto não disponível">
-                  <span>MO</span>
-                </div>
-              )}
-              <span className="portrait-decoration" aria-hidden="true">✳</span>
+        <div className="virtual-card__portrait">
+          {!imageError ? (
+            <img
+              src={nutritionist.photo}
+              alt={`Retrato de ${nutritionist.name}`}
+              fetchPriority="high"
+              onError={() => setImageError(true)}
+            />
+          ) : (
+            <div className="image-placeholder" aria-label="Foto não disponível">
+              <span>MO</span>
             </div>
-
-            <span className="eyebrow">SEU CUIDADO COMEÇA AQUI</span>
-            <h1>{nutritionist.name}</h1>
-            <p className="virtual-card__role">{nutritionist.title}</p>
-            <p className="registration">{nutritionist.registration}</p>
-            <p className="business-card__slogan">{nutritionist.slogan}</p>
-            <p className="virtual-card__about">{nutritionist.description}</p>
-          </div>
-
-          <div className="business-card__contact">
-            <a className="business-card__contact-item" href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
-              <span className="business-card__contact-icon" aria-hidden="true">↗</span>
-              <span><small>Agendamentos</small><strong>Conversar pelo WhatsApp</strong></span>
-              <span className="business-card__contact-arrow" aria-hidden="true">↗</span>
-            </a>
-            <a className="business-card__contact-item" href={nutritionist.instagram} target="_blank" rel="noopener noreferrer">
-              <span className="business-card__contact-icon" aria-hidden="true">◎</span>
-              <span><small>Redes sociais</small><strong>Acompanhe no Instagram</strong></span>
-              <span className="business-card__contact-arrow" aria-hidden="true">↗</span>
-            </a>
-            <a className="business-card__contact-item" href={`mailto:${nutritionist.email}`}>
-              <span className="business-card__contact-icon" aria-hidden="true">✉</span>
-              <span><small>E-mail</small><strong>{nutritionist.email}</strong></span>
-              <span className="business-card__contact-arrow" aria-hidden="true">↗</span>
-            </a>
-          </div>
-
-          <div className="business-card__share">
-            <div className="business-card__share-copy">
-              <span className="eyebrow">LEVE ESTE CARTÃO COM VOCÊ</span>
-              <h2>Conecte-se com facilidade.</h2>
-              <p>Compartilhe o link ou escaneie o QR Code para abrir este cartão no celular.</p>
-              <button className="button button--primary button--full" type="button" onClick={copyCardLink}>
-                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <rect x="8" y="8" width="12" height="12" rx="2" stroke="currentColor" strokeWidth="1.7" />
-                  <path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" stroke="currentColor" strokeWidth="1.7" />
-                </svg>
-                {copied ? "Link copiado!" : "Copiar link do cartão"}
-              </button>
-              <ShareButton />
-            </div>
-            <div className="business-card__qr-wrap">
-              <img className="business-card__qr" src={qrUrl} alt="QR Code para abrir o cartão virtual" loading="lazy" />
-              <span>APONTE A CÂMERA</span>
-            </div>
-          </div>
-
-          <button className="text-link business-card__more" type="button" onClick={onShowLanding}>
-            Conheça meu trabalho <span aria-hidden="true">↗</span>
-          </button>
-
-          <footer className="business-card__footer">
-            <Brand compact />
-            <span>{nutritionist.location}</span>
-            <span>Nutrição com propósito</span>
-          </footer>
+          )}
+          <span className="portrait-decoration" aria-hidden="true">
+            ✳
+          </span>
         </div>
-      </article>
+
+        <div className="virtual-card__identity">
+          <span className="eyebrow">OLÁ, QUE BOM TER VOCÊ AQUI</span>
+          <h1>{nutritionist.name}</h1>
+          <p className="virtual-card__role">{nutritionist.title}</p>
+          <p className="registration">{nutritionist.registration}</p>
+          <p className="virtual-card__description">{nutritionist.slogan}</p>
+          <p className="virtual-card__about">{nutritionist.description}</p>
+        </div>
+
+        <div className="virtual-card__actions">
+          <WhatsAppButton className="button--full" />
+          <InstagramLink className="button--full" />
+          <ShareButton />
+        </div>
+
+        <button
+          className="text-link virtual-card__more"
+          type="button"
+          onClick={onShowLanding}
+        >
+          Conheça meu trabalho
+          <span aria-hidden="true">↗</span>
+        </button>
+
+        <div className="virtual-card__footer">
+          <span>{nutritionist.location}</span>
+          <span>Nutrição individualizada</span>
+        </div>
+      </div>
     </main>
   );
 }
